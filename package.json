@@ -2,8 +2,12 @@
   "name": "bezier-points",
   "version": "0.0.1",
   "description": "Estimate points on a bezier curve or a set of connexted bezier curves",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
+    "build": "rm -rf lib && tsc",
+    "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
