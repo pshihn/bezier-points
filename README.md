@@ -51,7 +51,7 @@ Based on the tolerance alone, this algorithm nicely provides enough points to re
 const points = pointsOnBezierCurves(curve, 0.2, 0.15);
 ```
 
-Following are the points generated with distance values of `0.15`, `0.75`l, `1.5`, and `3.0`
+Following are the points generated with distance values of `0.15`, `0.75`, `1.5`, and `3.0`
 
 ![points with 0.15d](https://user-images.githubusercontent.com/833927/79051853-53b11f00-7be7-11ea-8970-7cc3f7621142.png)
 ![points with 0.75d](https://user-images.githubusercontent.com/833927/79051854-5449b580-7be7-11ea-9601-a1dd418b10d8.png)
