@@ -58,7 +58,31 @@ Following are the points generated with distance values of `0.15`, `0.75`l, `1.5
 
 ### curveToBezier(pointsIn: Point[]): Point[]
 
-Sometimes 
+Sometimes it's hard to think of shape as a set of cubic bezier curves, each curve with 2 controls points. It is simple to just think of them as a curve passing through a set of points. 
+
+This method turns those set of points to a set of points representing bezier curves.
+
+```javascript
+import { curveToBezier } from 'points-on-curve/lib/curve-to-bezier.js';
+
+const curvePoints = [
+  [20, 240],
+  [95, 69],
+  [225, 90],
+  [250, 180],
+  [290, 220],
+  [380, 80],
+];
+const bcurve = curveToBezier(curvePoints);
+// .. Plot bcurve
+```
+![Curve through points](https://user-images.githubusercontent.com/833927/79051797-12b90a80-7be7-11ea-92d2-5cb79adcbe30.png)
+
+Now that we have bezier points, these could be passed to `pointsOnBezierCurves` function to get the points on the curve
+
+![Curve through points](https://user-images.githubusercontent.com/833927/79051798-1351a100-7be7-11ea-8465-959a22b72371.png)
 
 
-Sometimes 
+## License
+[MIT License](https://github.com/pshihn/bezier-points/blob/master/LICENSE)
+
