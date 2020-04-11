@@ -26,7 +26,7 @@ import { pointsOnBezierCurves } from 'points-on-curve';
 
 const curve = [[70,240],[145,60],[275,90],[300,230]];
 const points = pointsOnBezierCurves(curve);
-plotPoints(points);
+// plotPoints(points);
 ```
 
 ![points on bezier](https://user-images.githubusercontent.com/833927/79051836-45630300-7be7-11ea-8cb6-cba2695a4807.png)
