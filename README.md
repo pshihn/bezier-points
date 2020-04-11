@@ -13,6 +13,8 @@ npm install --save points-on-curve
 
 The code is distributed as an ES6 module. 
 
+## API
+
 ### pointsOnBezierCurves(points: Point[], tolerance?: number, distance?: number): Point[]
 
 You pass in the points representing a bezier curve. Each point is an array of two numbers e.g. `[100, 123]`.
