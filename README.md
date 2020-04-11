@@ -42,3 +42,20 @@ The value of **tolerance** can be between 0 and 1. It is used to decide how many
 
 
 #### Simplifying path
+
+Based on the tolerance alone, this algorithm nicely provides enough points to represent a curve. It does not, however, efficiently get rid of unneeded points. The second *optional* argument in function, **distance** helps with that. If a `distance` value is provided, the method uses the [Ramer–Douglas–Peucker algorithm](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm) to reduce the points. 
+
+```javascript
+const points = pointsOnBezierCurves(curve, 0.2, 0.15);
+```
+
+Following are the points generated with distance values of `0.15`, `0.75`l, `1.5`, and `3.0`
+
+![points with 0.15d](https://user-images.githubusercontent.com/833927/79051853-53b11f00-7be7-11ea-8970-7cc3f7621142.png)
+![points with 0.75d](https://user-images.githubusercontent.com/833927/79051854-5449b580-7be7-11ea-9601-a1dd418b10d8.png)
+![points with 1.5d](https://user-images.githubusercontent.com/833927/79051855-5449b580-7be7-11ea-9ab4-139beb0faf11.png)
+![points with 3.0d](https://user-images.githubusercontent.com/833927/79051856-54e24c00-7be7-11ea-9f52-34e3ad9c81bd.png)
+
+
+
+a good job of making sure we have enough points but it doesn't do such a great job of getting rid of unneeded points.
