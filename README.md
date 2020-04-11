@@ -56,6 +56,9 @@ Following are the points generated with distance values of `0.15`, `0.75`l, `1.5
 ![points with 1.5d](https://user-images.githubusercontent.com/833927/79051855-5449b580-7be7-11ea-9ab4-139beb0faf11.png)
 ![points with 3.0d](https://user-images.githubusercontent.com/833927/79051856-54e24c00-7be7-11ea-9f52-34e3ad9c81bd.png)
 
+### curveToBezier(pointsIn: Point[]): Point[]
+
+Sometimes 
 
 
-a good job of making sure we have enough points but it doesn't do such a great job of getting rid of unneeded points.
+Sometimes 
