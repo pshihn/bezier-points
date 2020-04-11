@@ -11,7 +11,7 @@ From npm
 npm install --save points-on-curve
 ```
 
-The code is distributed as an ES6 module. 
+The package is distributed as an ES6 module. 
 
 ## API
 
