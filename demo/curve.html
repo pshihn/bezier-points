@@ -1,0 +1,133 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>path-data-parser demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      font-size: 13px;
+    }
+
+    section {
+      display: block;
+      padding: 30px 16px;
+      box-sizing: border-box;
+    }
+
+    canvas {
+      display: block;
+      margin: 10px 0 0;
+    }
+
+    .horizontal {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .center {
+      align-items: center;
+    }
+
+    .flex {
+      flex: 1;
+    }
+
+    input {
+      margin: 0 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="horizontal center">
+      <label>Tolerance</label>
+      <input id="tin2" type="range" min="0.001" max="1" step="0.001" value="0.001">
+      <span id="t2"></span>
+    </div>
+    <div class="horizontal center">
+      <label>Distance</label>
+      <input id="din" type="range" min="0" max="3" step="0.001" value="0">
+      <span id="d"></span>
+    </div>
+    <canvas id="c2" width="400" height="300"></canvas>
+  </section>
+
+  <script type="module">
+    import { pointsOnBezierCurves } from '../lib/index.js';
+    import { curveToBezier } from '../lib/curve-to-bezier.js';
+
+    const tin2 = document.getElementById('tin2');
+    const din = document.getElementById('din');
+    const c2 = document.getElementById('c2');
+    const t2 = document.getElementById('t2');
+    const d = document.getElementById('d');
+
+    const curve = [
+      [-130 + 150, 90 + 150],
+      [-55 + 150, -90 + 150],
+      [75 + 150, -60 + 150],
+      [100 + 150, 80 + 100],
+      [100 + 190, 80 + 140],
+      [380, 80],
+    ];
+
+    const draw = (canvas, t, d) => {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of curve) {
+        ctx.beginPath();
+        ctx.fillStyle = 'pink';
+        ctx.arc(p[0], p[1], 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      const bcurve = curveToBezier(curve);
+
+      ctx.strokeStyle = 'orange';
+      ctx.moveTo(...bcurve[0]);
+      for (let i = 1; i < (bcurve.length); i += 3)
+        ctx.bezierCurveTo(...bcurve[i], ...bcurve[i + 1], ...bcurve[i + 2]);
+      ctx.stroke();
+
+      const points = pointsOnBezierCurves(bcurve, t, d);
+      ctx.fillStyle = 'blue';
+      ctx.strokeStyle = 'blue';
+      if (d) {
+        ctx.beginPath();
+        for (let i = 0; i < points.length; i++) {
+          if (i === 0) {
+            ctx.moveTo(...points[i]);
+          } else {
+            ctx.lineTo(...points[i]);
+          }
+        }
+        ctx.stroke();
+      }
+      for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p[0], p[1], 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+
+    const render2 = () => {
+      const tol = +tin2.value;
+      const dist = +din.value;
+      t2.textContent = tol;
+      d.textContent = dist;
+      draw(c2, tol, dist);
+    }
+    tin2.addEventListener('input', render2);
+    din.addEventListener('input', render2);
+
+    render2();
+
+  </script>
+</body>
+
+</html>

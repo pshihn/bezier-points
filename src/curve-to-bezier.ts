@@ -4,24 +4,32 @@ function clone(p: Point): Point {
   return [...p] as Point;
 }
 
-export function curveToBezier(points: Point[], curveTightness = 0): Point[] {
-  const len = points.length;
+export function curveToBezier(pointsIn: Point[], curveTightness = 0): Point[] {
+  const len = pointsIn.length;
   if (len < 3) {
     throw new Error('A curve must have at least three points.');
   }
   const out: Point[] = [];
   if (len === 3) {
     out.push(
-      clone(points[0]),
-      clone(points[1]),
-      clone(points[2]),
-      clone(points[2])
+      clone(pointsIn[0]),
+      clone(pointsIn[1]),
+      clone(pointsIn[2]),
+      clone(pointsIn[2])
     );
   } else {
+    const points: Point[] = [];
+    points.push(pointsIn[0], pointsIn[0]);
+    for (let i = 1; i < pointsIn.length; i++) {
+      points.push(pointsIn[i]);
+      if (i === (pointsIn.length - 1)) {
+        points.push(pointsIn[i]);
+      }
+    }
     const b: Point[] = [];
     const s = 1 - curveTightness;
     out.push(clone(points[0]));
-    for (let i = 1; (i + 2) < len; i++) {
+    for (let i = 1; (i + 2) < points.length; i++) {
       const cachedVertArray = points[i];
       b[0] = [cachedVertArray[0], cachedVertArray[1]];
       b[1] = [cachedVertArray[0] + (s * points[i + 1][0] - s * points[i - 1][0]) / 6, cachedVertArray[1] + (s * points[i + 1][1] - s * points[i - 1][1]) / 6];
