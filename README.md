@@ -1,7 +1,7 @@
 # points-on-curve
 
 This package calculate the points on a curve with a certain tolerance. It can also simplify the shape to use fewer points. 
-This can really usefule when estimating lines/polygons for curves in WebGL or for Hit/Cosllision detections. 
+This can really be useful when estimating lines/polygons for curves in WebGL or for Hit/Collision detections. 
 
 ## Install
 
@@ -11,7 +11,7 @@ From npm
 npm install --save points-on-curve
 ```
 
-The code is distributed as an ES6 module. 
+The package is distributed as an ES6 module. 
 
 ## API
 
