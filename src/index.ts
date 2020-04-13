@@ -110,8 +110,10 @@ function simplifyPoints(points: Point[], start: number, end: number, epsilon: nu
     simplifyPoints(points, start, maxNdx + 1, epsilon, outPoints);
     simplifyPoints(points, maxNdx, end, epsilon, outPoints);
   } else {
-    // add the 2 end points
-    outPoints.push(s, e);
+    if (!outPoints.length) {
+      outPoints.push(s);
+    }
+    outPoints.push(e);
   }
 
   return outPoints;
