@@ -87,6 +87,10 @@ function getPointsOnBezierCurveWithSplitting(points: Point[], offset: number, to
   return outPoints;
 }
 
+export function simplify(points: Point[], distance: number): Point[] {
+  return simplifyPoints(points, 0, points.length, distance);
+}
+
 // Ramer–Douglas–Peucker algorithm
 // https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
 function simplifyPoints(points: Point[], start: number, end: number, epsilon: number, newPoints?: Point[]): Point[] {
