@@ -1,4 +1,4 @@
-export type Point = [number, number];
+export type Point = readonly [number, number];
 
 // distance between 2 points
 function distance(p1: Point, p2: Point): number {
@@ -29,7 +29,7 @@ function lerp(a: Point, b: Point, t: number): Point {
 }
 
 // Adapted from https://seant23.wordpress.com/2010/11/12/offset-bezier-curves/
-function flatness(points: Point[], offset: number): number {
+function flatness(points: readonly Point[], offset: number): number {
   const p1 = points[offset + 0];
   const p2 = points[offset + 1];
   const p3 = points[offset + 2];
@@ -51,7 +51,7 @@ function flatness(points: Point[], offset: number): number {
   return ux + uy;
 }
 
-function getPointsOnBezierCurveWithSplitting(points: Point[], offset: number, tolerance: number, newPoints?: Point[]): Point[] {
+function getPointsOnBezierCurveWithSplitting(points: readonly Point[], offset: number, tolerance: number, newPoints?: Point[]): Point[] {
   const outPoints = newPoints || [];
   if (flatness(points, offset) < tolerance) {
     const p0 = points[offset + 0];
@@ -87,13 +87,13 @@ function getPointsOnBezierCurveWithSplitting(points: Point[], offset: number, to
   return outPoints;
 }
 
-export function simplify(points: Point[], distance: number): Point[] {
+export function simplify(points: readonly Point[], distance: number): Point[] {
   return simplifyPoints(points, 0, points.length, distance);
 }
 
 // Ramer–Douglas–Peucker algorithm
 // https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
-function simplifyPoints(points: Point[], start: number, end: number, epsilon: number, newPoints?: Point[]): Point[] {
+function simplifyPoints(points: readonly Point[], start: number, end: number, epsilon: number, newPoints?: Point[]): Point[] {
   const outPoints = newPoints || [];
 
   // find the most distance point from the endpoints
@@ -123,7 +123,7 @@ function simplifyPoints(points: Point[], start: number, end: number, epsilon: nu
   return outPoints;
 }
 
-export function pointsOnBezierCurves(points: Point[], tolerance: number = 0.15, distance?: number): Point[] {
+export function pointsOnBezierCurves(points: readonly Point[], tolerance: number = 0.15, distance?: number): Point[] {
   const newPoints: Point[] = [];
   const numSegments = (points.length - 1) / 3;
   for (let i = 0; i < numSegments; i++) {
