@@ -4,7 +4,7 @@ function clone(p: Point): Point {
   return [...p] as Point;
 }
 
-export function curveToBezier(pointsIn: Point[], curveTightness = 0): Point[] {
+export function curveToBezier(pointsIn: readonly Point[], curveTightness = 0): Point[] {
   const len = pointsIn.length;
   if (len < 3) {
     throw new Error('A curve must have at least three points.');
