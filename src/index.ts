@@ -93,7 +93,7 @@ export function simplify(points: readonly Point[], distance: number): Point[] {
 
 // Ramer–Douglas–Peucker algorithm
 // https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
-function simplifyPoints(points: readonly Point[], start: number, end: number, epsilon: number, newPoints?: Point[]): Point[] {
+export function simplifyPoints(points: readonly Point[], start: number, end: number, epsilon: number, newPoints?: Point[]): Point[] {
   const outPoints = newPoints || [];
 
   // find the most distance point from the endpoints
